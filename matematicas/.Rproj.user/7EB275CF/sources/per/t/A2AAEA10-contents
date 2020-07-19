@@ -1,0 +1,66 @@
+---
+title: "Apuntes de Matemáticas"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+# Regresión lineal
+
+El modelo predictivo en una regresión lineal se asume que la variable a predecir $Y$ es una función lineal de la o las variables de entrada $X$. Es decir que,
+
+\begin{center}
+$y_e=\alpha + \beta x$
+\end{center}
+
+En la ecuación aparecen dos parámetros $\alpha$ y $\beta$ que se calcularán para minimizar el error entre las variables de entrada y de salida, de tal manera que podamos encontrar cualquier valor de $Y$.
+
+Esto, matemáticamente se traduce en la siguiente expresión:
+
+\begin{center}
+$e_i = (y_i - Y_e(x_i))$
+\end{center}
+
+Entonces, el objetivo es minimizar la suma de los errores sobre todos los puntos del data set. Todos estos puntos son los valores de $x$ e $y$ de $1$ a $n$:
+
+\begin{center}
+$X = \{(x_i,y_i)\}^n_{i=1}$
+\end{center}
+
+Para reducir el error, debemos considerar que este puede ser tanto positivo como negativo, por tanto, la expresión del error la debemos calcular como cuadrado:
+
+\begin{center}
+$min \sum_{i=1}^n e^2_i = \sum_{i=1}^n (y_i - Y_e(x_i))^2 = \sum_{i=1}^n (y_i - (\alpha + \beta x_i))^2$
+\end{center}
+
+Utilizando el cálculo diferencial se puede demostrar que los parámetros que minimizan la ecuación anterior vienen dados por:
+
+\begin{center}
+$\beta = \frac{\sum_{i=1}^n(x_i - \overline{x})(y_i-\overline{y})}{\sum_{i=1}^n(x_i -\overline{x})^2}$
+\end{center}
+
+Es decir,
+
+\begin{center}
+$\beta = \frac{Cov(x,y)}{Var(x)}$
+\end{center}
+
+Y, por tanto, al despejar
+
+\begin{center}
+$\alpha = \overline{y} - \beta \overline{x}$
+\end{center}
+
+## La componente de error
+
+En la realidad, un modelo lineal no podrá predecir con exactitud todos los valores, por tanto se considerará que el modelo **siempre tiene una componente de error, que responderá a una variable cualquiera con (necesariamente) una distribución normal.**
+
+\begin{center}
+$y = \alpha + \beta x + \varepsilon$
+\end{center}
+
+**En el caso de que la variable residual $\varepsilon$ no responda a una distribución normal, deberemos desechar nuestro modelo lineal, pues en el fenómeno se estará produciendo una distribución (logarítmica, exponencial, cuadrática, etc.) que nuestro modelo no está siendo capaz de representar.**
+
